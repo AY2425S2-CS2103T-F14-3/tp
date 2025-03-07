@@ -320,6 +320,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should ensure that all data entries are processed within 5 seconds under normal operating conditions, providing quick feedback to user interactions.
+5.  Application should maintain user data privacy and security, adhering to the latest data protection regulations.
+6.  The system should be user-friendly, with an interface that requires no more than 20 minutes of training for new users to perform basic operations.
+
+
 
 *{More to be added}*
 
@@ -327,6 +332,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **API (Application Programming Interface)**: Set of rules and specifications that software programs can follow to communicate with each other.
+* **CLI (Command Line Interface)**: A user interface navigated by typing commands into a terminal or console window.
+* **GUI (Graphical User Interface)**: An interface allowing users to interact with electronic devices through graphical icons and visual indicators.
+* **JSON (JavaScript Object Notation)**: A lightweight data-interchange format, easy for humans to read and write, and easy for machines to parse and generate.
+* **Mainstream OS**: Operating systems that are widely used and supported, such as Windows, macOS, Linux, and UNIX.
+* **Model-View-Controller (MVC)**: Architectural pattern isolating business logic from user interface considerations.
+* **ObservableList**: A list that allows listeners to track changes when they occur.
+* **Parser**: A component that interprets text data within a file according to predefined rules or specifications.
+* **PlantUML**: A tool for quickly writing and sharing visual representations of programs, algorithms, and systems.
+* **Sequence Diagram**: A type of UML diagram showing how objects operate with one another and in what order.
+* **State Pointer**: A reference point tracking the current state or position in a sequence of states.
+* **UML (Unified Modeling Language)**: A standardized modeling language consisting of an integrated set of diagrams.
+* **Version Control System**: A system that records changes to files over time, allowing specific versions to be recalled later.
+* **XML (eXtensible Markup Language)**: A markup language defining rules for encoding documents in a format that is both human-readable and machine-readable.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
