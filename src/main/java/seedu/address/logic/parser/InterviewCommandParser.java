@@ -35,6 +35,11 @@ public class InterviewCommandParser implements Parser<InterviewCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InterviewCommand.MESSAGE_USAGE));
         }
 
+        if (parts.length > 4) {
+            logger.info("Over arguments provided for interview command");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InterviewCommand.MESSAGE_USAGE));
+        }
+
         Index index;
         try {
             index = ParserUtil.parseIndex(parts[0]);
