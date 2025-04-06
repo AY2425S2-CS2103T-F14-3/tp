@@ -442,7 +442,7 @@ undo
 
 **Key behaviors**:
 * Restores the previous state
-* Works with modifying commands (`add`, `delete`, `edit`, etc.)
+* Works with modifying commands, which includes `add`, `clear`, `delete`, `edit`, `interview` and `note`.
 * Multiple `undo` commands will revert multiple changes
 
 **Examples**:
