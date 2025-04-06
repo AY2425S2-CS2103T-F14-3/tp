@@ -154,8 +154,8 @@ regardless of name, phone number, or other details.
 
 ⚠️ **Warning**:
 * Tags cannot contain spaces - use hyphens instead if needed (e.g., use machine-learning and not machine learning)
-Expected output:
 
+Expected output:
 ```
 New candidate added: John Doe; Phone: 98765432; Email: johnd@example.com; 
 Address: 123 Apple Park Way; Job Position: Software Engineer; 
