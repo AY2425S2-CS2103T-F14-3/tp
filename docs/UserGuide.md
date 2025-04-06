@@ -508,7 +508,7 @@ RecruitIntel handles your data with care and provides features to manage data:
 * Data does not disappear after exiting the application
 
 #### Data File
-* Location: `[JAR file location]/data/addressbook.json`
+* Location: `[JAR file location]/data/recruitintel.json`
 * Format: JSON (human-readable)
 * Can be manually edited (advanced users)
 
@@ -525,7 +525,7 @@ Furthermore, certain edits can cause RecruitIntel to behave in unexpected ways (
 **Q**: How do I transfer my candidate data to another computer?
 **A**: Follow these steps:
 1. Install RecruitIntel on the new computer
-2. Locate the data file (`addressbook.json`) on your old computer
+2. Locate the data file (`recruitintel.json`) on your old computer
 3. Copy this file to the same location on the new computer
 4. Start RecruitIntel on the new computer
 
