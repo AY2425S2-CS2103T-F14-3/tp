@@ -152,9 +152,6 @@ regardless of name, phone number, or other details.
 * Use meaningful tags to track candidate skills and experiences
 * Add multiple tags to make classification easier later on
 
-⚠️ **Warning**:
-* Avoid duplicate entries by checking for duplicates first
-
 Expected output:
 ```
 New candidate added: John Doe; Phone: 98765432; Email: johnd@example.com; 
@@ -442,7 +439,7 @@ undo
 
 **Key behaviors**:
 * Restores the previous state
-* Works with modifying commands (`add`, `delete`, `edit`, etc.)
+* Works with modifying commands, which includes `add`, `clear`, `delete`, `edit`, `interview` and `note`.
 * Multiple `undo` commands will revert multiple changes
 
 **Examples**:

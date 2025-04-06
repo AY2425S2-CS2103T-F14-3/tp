@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.format.ResolverStyle;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,7 +18,12 @@ public class StartTime implements Comparable<StartTime> {
 
     public static final String VALIDATION_REGEX = "^$|^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}$";
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    //private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HH:mm")
+            .withResolverStyle(ResolverStyle.STRICT);
     public final String value;
     private final LocalDateTime parsedStartTime;
 
@@ -49,18 +55,35 @@ public class StartTime implements Comparable<StartTime> {
             return true;
         }
 
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
         try {
-            if (!test.matches(VALIDATION_REGEX)) {
+            LocalDateTime parsed = LocalDateTime.parse(test, FORMATTER);
+
+            // Manual check for invalid February 29
+            int year = parsed.getYear();
+            int month = parsed.getMonthValue();
+            int day = parsed.getDayOfMonth();
+
+            if (month == 2 && day >= 29 && !isLeapYear(year)) {
                 return false;
             }
-            LocalDateTime parsed = LocalDateTime.parse(test, FORMATTER);
+
+            if (month == 2 && day >= 30 && isLeapYear(year)) {
+                return false;
+            }
+
             return isMinuteMultipleOfFive(parsed);
         } catch (DateTimeParseException e) {
             return false;
         }
     }
 
-
+    private static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
 
     public static boolean isMinuteMultipleOfFive(LocalDateTime dateTime) {
         return dateTime.getMinute() % 5 == 0;
