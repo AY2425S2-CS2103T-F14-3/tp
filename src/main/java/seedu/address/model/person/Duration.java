@@ -7,8 +7,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Duration {
 
-    public static final String MESSAGE_CONSTRAINTS = "Duration must be a positive integer multiple of 5.\n"
+    public static final String MESSAGE_CONSTRAINTS = "Duration must be a positive integer multiple of 5, "
+            + "and cannot exceed 1440 (24 hours).\n"
             + "Example: \"30\" means 30 minutes.";
+
     public final String value;
     private final int durationInMinutes;
 
@@ -42,7 +44,7 @@ public class Duration {
 
         try {
             int durationMinutes = Integer.parseInt(test);
-            return durationMinutes > 0 && durationMinutes % 5 == 0;
+            return durationMinutes > 0 && durationMinutes % 5 == 0 && durationMinutes <= 1440;
         } catch (NumberFormatException e) {
             return false;
         }
