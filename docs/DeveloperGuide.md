@@ -91,7 +91,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -108,7 +108,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -138,7 +138,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -159,7 +159,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -312,19 +312,18 @@ A highly efficient, CLI-driven contact management system that enables Apple’s 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                                  | So that I can…​                                                                       |
-|--------|-----------|---------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| `* * *` | new user  | see usage instructions                                        | refer to instructions when I forget how to use the App or when I start using the app. |
-| `* * *` | recruiter | add a candidate’s name, contact details, and role applied for | keep track of them easily.                                                            |
-| `* * *` | recruiter | list all candidates in the system                             | see at a glance who is currently in the database.                                     |
-| `* * *` | recruiter | remove outdated or irrelevant candidate records               | maintain a clean list.                                                                |
-| `* * *` | recruiter | find candidates by their names or skills                      | quickly locate specific individuals.                                                  |
-| `* * *` | recruiter | Record the candidate's interview performance                  | facilitate subsequent admission evaluation.                                           |
-| `* * *` | recruiter | Add candidates' interview time                                | schedule an interview.                                                                |
-| `* *`  | recruiter | sort candidates by criteria (e.g., interview time)            | see the best matches first.                                                           |
-| `* *`  | recruiter | edit a candidate's details (e.g. phone, email)                | correct mistakes and keep data accurate conveniently.                                 |
-| `*`    | recruiter | hide private contact details of my candidates                 | minimize chance of possible candidates' privacy leakage.                              |
-
+| Priority | As a …​   | I want to …​                                                   | So that I can…​                                                                       |
+|--------|-----------|----------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `* * *` | new user  | see usage instructions                                         | refer to instructions when I forget how to use the App or when I start using the app. |
+| `* * *` | recruiter | add a candidate’s name, contact details, and role applied for  | keep track of them easily.                                                            |
+| `* * *` | recruiter | list all candidates in the system                              | see at a glance who is currently in the database.                                     |
+| `* * *` | recruiter | remove outdated or irrelevant candidate records                | maintain a clean list.                                                                |
+| `* * *` | recruiter | find candidates by their names or skills                       | quickly locate specific individuals.                                                  |
+| `* * *` | recruiter | Record the candidate's interview performance                   | facilitate subsequent admission evaluation.                                           |
+| `* * *` | recruiter | Add candidates' interview time                                 | schedule an interview.                                                                |
+| `* *`  | recruiter | sort candidates by increasing interview time                   | who is the fisrt to be interviewed.                                                   |
+| `* *`  | recruiter | edit a candidate's details (e.g. phone, email)                 | correct mistakes and keep data accurate conveniently.                                 |
+| `* *`  | recruiter | classify candidates by a combination of attributes             | filter candidates based on specific criteria.                                         |
 ### Use cases
 
 (For all use cases below, the **System** is the `RecruitIntel` and the **Actor** is the `user`, unless specified otherwise)
@@ -371,9 +370,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. HR Recruiter chooses to edit a candidate.
-2. **System** requests the candidate to edit.
-3. HR Recruiter enters the candidate to edit.
-4. **System** updates the student’s details and display a success message.
+2. **System** requests the candidate to be edited.
+3. HR Recruiter enters the candidate to be edited.
+4. **System** requests the new details for the candidate.
+5. HR Recruiter enters the new details for the candidate.
+6. **System** updates the candidate’s details and display a success message.
+  
+Use case ends.
+
+**Extension**
+- **3a.** **System** detects an invalid candidate.
+    - **3a1.** **System** requests the recruiter to enter a valid candidate.
+    - **3a2.** HR Recruiter enters a new valid candidate.
+    - Steps 3a1–3a2 are repeated until the input is valid.  
+      Use case resumes from step 4.
+- **5a.** **System** detects an invalid detail.
+  - **5a1.** **System** requests the recruiter to enter a valid detail.
+  - **5a2.** HR Recruiter enters a new valid detail.
+  - Steps 5a1–5a2 are repeated until the input is valid.  
+    Use case resumes from step 6.
+
+Use case ends.
+
+## Use Case: UC04 - Classify Candidate
+**MSS**
+1. HR Recruiter chooses to classify some candidates based on tags.
+2. **System** requests the tags to be used to classify.
+3. **System** displays the candidates classified by tags.
+
+Use case ends.
+
+## Use Case: UC05 - Find Candidate
+**MSS**
+1. HR Recruiter chooses to find a candidate.
+2. **System** requests the keywords to be used to find candidate.
+3. HR Recruiter enters the keywords to find.
+4. **System** finds the candidate and displays the candidate.
+
+   Use case ends.
+
+## Use Case: UC06 - Enter Note for Candidate
+**MSS**
+1. HR Recruiter chooses to enter a note for a candidate.
+2. **System** requests the candidate that to be added a note.
+3. HR Recruiter enters the chosen candidate.
+4. **System** requests the note to be added for the candidate.
+5. HR Recruiter enters the note for the candidate.
+6. **System** displays the note for the candidate.  
    Use case ends.
 
 **Extension**
@@ -382,44 +425,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - **3a2.** HR Recruiter enters a new valid candidate.
     - Steps 3a1–3a2 are repeated until the input is valid.  
       Use case resumes from step 4.
-
-## Use Case: UC04 - Classify Candidate
-**MSS**
-1. HR Recruiter chooses to classify some candidates based on tag.
-2. **System** requests the candidate to classify.
-3. **System** displays the candidate to classify.
-
-## Use Case: UC05 - Find Candidate
-**MSS**
-1. HR Recruiter chooses to find a candidate.
-2. **System** requests the candidate to find.
-3. HR Recruiter enters the keywords to find.
-4. **System** finds the candidate and displays the candidate.
-5. **System** displays the list of candidates.  
-   Use case ends.
-
-## Use Case: UC06 - Enter Note for Candidate
-**MSS**
-1. HR Recruiter chooses to enter a note for a candidate.
-2. **System** requests the candidate to enter a note.
-3. HR Recruiter enters the note for the candidate.
-4. **System** displays the note for the candidate.  
-   Use case ends.
-
-**Extension**
-- **3a.** **System** detects and invalid note.
-    - **3a1.** **System** requests the recruiter to enter a valid note.
-    - **3a2.** HR Recruiter enters a new valid note.
-    - Steps 3a1–3a2 are repeated until the input is valid.  
-      Use case resumes from step 4.
+- **5a.** **System** detects an invalid note.
+    - **5a1.** **System** requests the recruiter to enter a valid note.
+    - **5a2.** HR Recruiter enters a new valid note.
+    - Steps 5a1–5a2 are repeated until the input is valid.  
+      Use case resumes from step 6.
 Use case ends.
 
 ## Use Case: UC07 - Delete Candidate
 
 **MSS**
 1. HR Recruiter chooses to delete a candidate.
-2. **System** requests the candidate to delete.
-3. HR Recruiter enters the candidate to delete.
+2. **System** requests the candidate to be deleted.
+3. HR Recruiter enters the candidate to be deleted.
+4. **System** deletes the candidate and displays a success message.
 
 Use case ends.
 
@@ -435,17 +454,24 @@ Use case ends.
 ## Use Case: UC08 - Add Interview Time Information for Candidate
 **MSS**
 1. HR Recruiter chooses to add interview time information for a candidate.
-2. **System** requests the candidate to add interview time information.
-3. HR Recruiter enters the interview time information for the candidate.
-4. **System** displays the interview time information for the candidate.  
+2. **System** requests the candidate to be added interview time information.
+3. HR Recruiter enters the candidate to be added interview time information.
+4. **System** requests the interview time information for the candidate.
+5. HR Recruiter enters the interview time information for the candidate.
+6. **System** displays the interview time information for the candidate.  
    Use case ends.
 
 **Extensions**
-- **3a.** **System** detects an invalid interview time information.
-    - **3a1.** **System** requests the recruiter to enter a valid interview time information.
-    - **3a2.** HR Recruiter enters a new valid interview time information.
+- **3a.** **System** detects an invalid candidate.
+    - **3a1.** **System** requests the recruiter to enter a valid candidate.
+    - **3a2.** HR Recruiter enters a new valid candidate.
     - Steps 3a1–3a2 are repeated until the input is valid.  
       Use case resumes from step 4.
+- **5a.** **System** detects an invalid interview time information.
+    - **5a1.** **System** requests the recruiter to enter a valid interview time information.
+    - **5a2.** HR Recruiter enters a new valid interview time information.
+    - Steps 5a1–5a2 are repeated until the input is valid.  
+      Use case resumes from step 6.
 
 Use case ends.
 
@@ -457,7 +483,7 @@ Use case ends.
 3. **System** displays the sorted list.  
    Use case ends.
 
-## Use Case: UC10 - Undo/redo Actions
+## Use Case: UC10 - Undo Actions
 **MSS**
 1. HR Recruiter chooses to undo the last action.
 2. **System** undoes the last action.  
@@ -466,13 +492,22 @@ Use case ends.
 **Extensions**
 - **1a.** **System** detects that there are no actions to undo.
     - **1a1.** **System** shows an error message and requests the recruiter to enter a valid action.  
-      Use case ends.
-    - *a. User chooses to redo the action.
-        - *a1. StoreClass restores the previous action and display a success message.
 
 Use case ends.
 
-## Use Case: UC11 - Clear All Candidates
+## Use Case: UC11 - Redo Actions
+**MSS**
+1. HR Recruiter chooses to redo the last action.
+2. **System** redoes the last action.  
+   Use case ends.
+
+**Extensions**
+- **1a.** **System** detects that there are no actions to redo.
+    - **1a1.** **System** shows an error message and requests the recruiter to enter a valid action.
+    
+Use case ends.
+
+## Use Case: UC12 - Clear All Candidates
 **MSS**
 1. HR Recruiter chooses to clear all candidates.
 2. **System** clears all candidates.  
@@ -486,8 +521,9 @@ Use case ends.
 4.  Should ensure that all data entries are processed within 5 seconds under normal operating conditions, providing quick feedback to user interactions.
 5.  Application should maintain user data privacy and security, adhering to the latest data protection regulations.
 6.  The system should be user-friendly, with an interface that requires no more than 20 minutes of training for new users to perform basic operations.
-
-*{More to be added}*
+7.  The system should store candidate information securely.
+8.  The system should not crash or freeze when an invalid command is entered.
+9.  The system should be self-contained and should not require an internet connection or external databases.
 
 ### Glossary
 * **AB3**: The codebase provided as a starting point for this project. RecruitIntel extends and modifies AB3.
@@ -502,8 +538,9 @@ Use case ends.
 * **UML (Unified Modeling Language)**: A standardized modeling language consisting of an integrated set of diagrams.
 * **XML (eXtensible Markup Language)**: A markup language defining rules for encoding documents in a format that is both human-readable and machine-readable.
 * **Tag**: A keyword or term assigned to a piece of information, making it easier to search for and locate.
-
-
+* **Candidate**: A person who applies for a job or position, often undergoing an interview process.
+* **Interview**: A formal meeting in which a candidate is evaluated for a position.
+* **Recruiter**: A person responsible for finding and hiring candidates for job positions.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
