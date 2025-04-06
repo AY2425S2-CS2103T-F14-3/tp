@@ -95,11 +95,12 @@ public class AddressBookParserTest {
 
     @Test
     public void classifyCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("friend", "java", "python");
+        List<String> keywords = Arrays.asList("friends", "owesMoney");
         List<Predicate<Person>> predicates = new ArrayList<>();
-        predicates.add(new TagsContainsKeywordsPredicate(keywords));
+        predicates.add(new TagsContainsKeywordsPredicate(List.of("friends")));
+        predicates.add(new TagsContainsKeywordsPredicate(List.of("owesMoney")));
         ClassifyCommand command = (ClassifyCommand) parser.parseCommand(
-                ClassifyCommand.COMMAND_WORD + " t/" + keywords.stream().collect(Collectors.joining(" ")));
+                ClassifyCommand.COMMAND_WORD + " t/friends t/owesMoney");
         assertEquals(new ClassifyCommand(predicates), command);
     }
 

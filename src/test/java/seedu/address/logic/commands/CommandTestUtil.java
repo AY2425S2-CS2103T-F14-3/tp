@@ -65,7 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS = " ";
     public static final String INVALID_JOB_POSITION = "@invalid job!";
     public static final String INVALID_TEAM = "@invalid team!";
-    public static final String INVALID_TAG = "#friend";
+    public static final String INVALID_TAG = "@!invalid";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_NAME;
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + INVALID_PHONE;

@@ -129,12 +129,12 @@ tm/TEAM_APPLIED [t/TAG]…​
 
 **Key behaviors**:
 * All details except tags are mandatory
-* Emails are the source of duplicate detection. A candidate is considered a duplicate if they share the same email as an existing candidate, 
-regardless of name, phone number, or other details.
+* A candidate is considered a duplicate if they share the same email as an existing candidate.
 * Email must follow these rules:
     - Before @: Must start/end with letters/numbers and can contain (+, ., -) in between
     - After @: Must contain at least two parts (e.g., example.com) and each part can only use letters, numbers, and hyphens
     - Case sensitivity: Emails are case-insensitive (e.g., John@EXAMPLE.com equals john@example.com)
+* Each candidate can only apply to one job position and one team at a time
 
 **Examples**:
 * Adding an iOS developer:
@@ -153,7 +153,7 @@ regardless of name, phone number, or other details.
 * Add multiple tags to make classification easier later on
 
 ⚠️ **Warning**:
-* Avoid duplicate entries by checking for duplicates first
+* Tags cannot contain spaces - use hyphens instead if needed (e.g., use machine-learning and not machine learning)
 
 Expected output:
 ```
@@ -233,30 +233,30 @@ Groups and displays candidates based on their tags, teams, and/or job positions.
 
 **Format**:
 ```
-classify [t/TAG] [tm/TEAM] [j/JOB_POSITION]
+classify [t/TAG]... [tm/TEAM] [j/JOB_POSITION]
 ```
 
 **Key behaviors**:
 * Case-insensitive matching (e.g., `python` matches `Python`)
 * Partial matching supported (e.g., `eng` matches `Engineer`)
 * Shows candidates that match **all** provided criteria
+* Only one team (`tm/`) and one job position (`j/`) are allowed 
+* Multiple tags (`t/`) are allowed - candidates must match all specified tags
 
 **Examples**:
-* Find all candidates with Python expertise:
+* Find candidates with both frontend and React skills, applying for Software Engineer positions in the Web Development team:
   ```
-  classify t/python
-  ```
-* Find candidates with a figma tag, applying for Frontend Engineer positions at the Web Development team:
-  ```
-  classify t/figma j/Software Engineer tm/Web Development
+  classify t/frontend t/react j/Software Engineer tm/Web Development
   ```
 
 💡 **Tips**:
-* Start with broader searches and refine as needed
 * Use partial matches for flexibility
 * Combine with `sort` command to organize results by interview time
 
-⚠️ **Warning**: Empty results might mean your criteria are too restrictive
+⚠️ **Warning**: 
+* Multiple job positions or teams in one command are not allowed
+* Empty results might mean your criteria are too restrictive
+* Each tag needs its own `t/` prefix - do not combine multiple tags under one prefix
 
 Expected output:
 ![result for 'classify t/mobile j/Software Engineer tm/iOS Development'](images/ClassifyScreenshot.png)
@@ -277,9 +277,9 @@ find KEYWORD [MORE_KEYWORDS]
 * Candidates matching at least one keyword will be returned e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 **Examples**:
-* Search by single name:
+* Search by a single name:
   ```
-  find John
+  find George
   ```
   
 💡 **Tips**:
@@ -287,7 +287,7 @@ find KEYWORD [MORE_KEYWORDS]
 * Try different name variations
 
 Expected output:
-![result for 'find alex david'](images/FindScreenshot.png)
+![result for 'find George'](images/FindScreenshot.png)
 
 ### Adding notes to a candidate: `note`
 
