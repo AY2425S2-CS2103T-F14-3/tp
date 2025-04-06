@@ -17,13 +17,7 @@ public class StartTime implements Comparable<StartTime> {
             + "Example: \"2025-04-01 10:15\"";
 
     public static final String VALIDATION_REGEX = "^$|^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}$";
-
-    //private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter
-            .ofPattern("yyyy-MM-dd HH:mm")
-            .withResolverStyle(ResolverStyle.STRICT);
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public final String value;
     private final LocalDateTime parsedStartTime;
 
