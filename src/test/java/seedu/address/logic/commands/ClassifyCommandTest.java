@@ -21,8 +21,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.JobPositionContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TagsContainsKeywordsPredicate;
+import seedu.address.model.person.TeamContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ClassifyCommand}.
@@ -76,15 +78,39 @@ public class ClassifyCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void classifyCommand_singleTagFriend_threePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        TagsContainsKeywordsPredicate predicate = preparePredicate("friend frind");
         List<Predicate<Person>> predicates = new ArrayList<>();
-        predicates.add(predicate);
+        predicates.add(new TagsContainsKeywordsPredicate(List.of("friend")));
         ClassifyCommand command = new ClassifyCommand(predicates);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(person -> predicates.stream().allMatch(pred -> pred.test(person)));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void classifyCommand_twoTagsWithAndLogic_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        List<Predicate<Person>> predicates = new ArrayList<>();
+        predicates.add(new TagsContainsKeywordsPredicate(List.of("friends")));
+        predicates.add(new TagsContainsKeywordsPredicate(List.of("owesMoney")));
+        ClassifyCommand command = new ClassifyCommand(predicates);
+        expectedModel.updateFilteredPersonList(person -> predicates.stream().allMatch(pred -> pred.test(person)));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void classifyCommand_tagsWithJobAndTeam_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        List<Predicate<Person>> predicates = new ArrayList<>();
+        predicates.add(new TagsContainsKeywordsPredicate(Arrays.asList("friends", "owesMoney")));
+        predicates.add(new JobPositionContainsKeywordsPredicate(Arrays.asList("Product Manager")));
+        predicates.add(new TeamContainsKeywordsPredicate(Arrays.asList("Product")));
+        ClassifyCommand command = new ClassifyCommand(predicates);
+        expectedModel.updateFilteredPersonList(person -> predicates.stream().allMatch(pred -> pred.test(person)));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
     }
 
     @Test

@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -35,8 +34,22 @@ public class ClassifyCommandParser implements Parser<ClassifyCommand> {
     public ClassifyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = tokenizeArguments(args);
         validateAtLeastOnePrefix(argMultimap);
+        validateSingleJobAndTeam(argMultimap);
         List<Predicate<Person>> predicates = createPredicates(argMultimap);
         return new ClassifyCommand(predicates);
+    }
+
+    /**
+     * Validates that there is at most one job position and one team.
+     * @throws ParseException if multiple job positions or teams are found
+     */
+    private void validateSingleJobAndTeam(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getAllValues(PREFIX_JOB_POSITION).size() > 1) {
+            throw new ParseException(ClassifyCommand.MESSAGE_MULTIPLE_JOB_POSITIONS);
+        }
+        if (argMultimap.getAllValues(PREFIX_TEAM).size() > 1) {
+            throw new ParseException(ClassifyCommand.MESSAGE_MULTIPLE_TEAMS);
+        }
     }
 
     /**
@@ -71,18 +84,18 @@ public class ClassifyCommandParser implements Parser<ClassifyCommand> {
     }
 
     /**
-     * Adds a tag predicate to the list if tag prefix is present.
+     * Adds tag predicates to the list if tag prefix is present.
+     * Each tag gets its own predicate to ensure AND logic between tags.
      */
     private void addTagPredicateIfPresent(ArgumentMultimap argMultimap, List<Predicate<Person>> predicates)
             throws ParseException {
-        Optional<String> tagValue = argMultimap.getValue(PREFIX_TAG);
-        if (tagValue.isPresent()) {
-            String trimmedTags = tagValue.get().trim();
-            if (trimmedTags.isEmpty()) {
+        List<String> tagValues = argMultimap.getAllValues(PREFIX_TAG);
+        for (String tagValue : tagValues) {
+            String trimmedTag = tagValue.trim();
+            if (trimmedTag.isEmpty()) {
                 throw new ParseException(MESSAGE_EMPTY_TAG);
             }
-            String[] tagKeywords = trimmedTags.split("\\s+");
-            predicates.add(new TagsContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
+            predicates.add(new TagsContainsKeywordsPredicate(List.of(trimmedTag)));
         }
     }
 

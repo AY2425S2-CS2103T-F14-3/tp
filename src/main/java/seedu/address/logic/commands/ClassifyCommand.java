@@ -21,12 +21,18 @@ public class ClassifyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all candidates matching ALL specified criteria "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: [t/TAG] [tm/TEAM] [j/JOB_POSITION]\n"
+            + "Parameters: [t/TAG]... [tm/TEAM] [j/JOB_POSITION]\n"
+            + "Note: Multiple tags (t/) are allowed and will be combined with AND logic.\n"
+            + "      Only one team (tm/) and one job position (j/) are allowed.\n"
             + "Examples:\n"
             + "  " + COMMAND_WORD + " t/python\n"
+            + "  " + COMMAND_WORD + " t/python t/experienced\n"
             + "  " + COMMAND_WORD + " tm/Engineering\n"
             + "  " + COMMAND_WORD + " j/Software Engineer\n"
-            + "  " + COMMAND_WORD + " tm/iOS Development j/Product Manager t/swift";
+            + "  " + COMMAND_WORD + " t/mobile t/experienced j/Frontend Developer tm/TikTok Live";
+
+    public static final String MESSAGE_MULTIPLE_JOB_POSITIONS = "Only one job position (j/) is allowed.";
+    public static final String MESSAGE_MULTIPLE_TEAMS = "Only one team (tm/) is allowed.";
 
     private final List<Predicate<Person>> predicates;
 
