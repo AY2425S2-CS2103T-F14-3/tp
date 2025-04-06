@@ -129,8 +129,12 @@ tm/TEAM_APPLIED [t/TAG]…​
 
 **Key behaviors**:
 * All details except tags are mandatory
-* Email must be in a valid format
-* Multiple tags can be added for better classification
+* Emails are the source of duplicate detection. A candidate is considered a duplicate if they share the same email as an existing candidate, 
+regardless of name, phone number, or other details.
+* Email must follow these rules:
+    - Before @: Must start/end with letters/numbers and can contain (+, ., -) in between
+    - After @: Must contain at least two parts (e.g., example.com) and each part can only use letters, numbers, and hyphens
+    - Case sensitivity: Emails are case-insensitive (e.g., John@EXAMPLE.com equals john@example.com)
 
 **Examples**:
 * Adding an iOS developer:
@@ -365,8 +369,11 @@ interview INDEX START_TIME DURATION
 
 **Key behaviors**:
 * START_TIME format: yyyy-MM-dd HH:mm
-* DURATION must be a multiple of 5 
+* DURATION must be a multiple of 5 and cannot be over 1440
 * Uses the 24-hour time format
+* Interviews happen sequentially - Each candidate can only have one interview scheduled at a time
+* New interview times will replace existing ones
+* Different candidates can have interviews scheduled at the same time
 
 **Examples**:
 * Schedule a morning interview for 40 minutes:
@@ -378,14 +385,13 @@ interview INDEX START_TIME DURATION
 * Leave buffer time between interviews
 * Use `sort` to see the schedule
 * Consider time zones for remote interviews
-* Standard durations:
+* Standard duration examples:
     - 30 mins: Initial screening
     - 45 mins: Technical assessment
     - 60 mins: Team interviews
 
 ⚠️ **Warning**:
 * Verify date format carefully
-* Check for scheduling conflicts
 
 Expected output:
 ```
