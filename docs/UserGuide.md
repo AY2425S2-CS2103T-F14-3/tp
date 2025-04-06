@@ -181,11 +181,7 @@ list
 
 Expected output:
 ```
-Listed all candidates:
-1. John Doe (iOS Development)
-2. Jane Smith (Chip Design)
-3. Alex Yeoh (Machine Learning)
-...
+Listed all candidates
 ```
 
 ### Editing a candidate : `edit`
@@ -368,9 +364,9 @@ interview INDEX START_TIME DURATION
 ```
 
 **Key behaviors**:
-* START_TIME format: yyyy-MM-dd HH:mm
+* `INDEX` must be a positive integer from the displayed list and not greater than the number of candidates in RecruitIntel
+* START_TIME format: yyyy-MM-dd HH:mm - uses the 24-hour time format
 * DURATION must be a multiple of 5 and cannot be over 1440
-* Uses the 24-hour time format
 * Interviews happen sequentially - Each candidate can only have one interview scheduled at a time
 * New interview times will replace existing ones
 * Different candidates can have interviews scheduled at the same time
@@ -420,15 +416,11 @@ sort
   ```
 
 💡 **Tips**:
-* Use after `classify` to organize filtered candidates
-* Combine with `interview` command for scheduling
+* Sorting after modifying or adding candidates helps maintain a clear view of the schedule.
 
 Expected output:
 ```
-Sorted all displayed candidates by interview time.
-1. John Doe (Interview Start Time: 1 May 2025, 12:00 pm)
-2. Alice Tan (Interview Start Time: 3 May 2025, 2:30 pm)
-3. Bob Chen (Interview Start Time: 6 May 2025, 10:00 am)
+Sorted all candidates by their Interviews' Start Time.
 ```
 
 ### Undoing changes: `undo`
