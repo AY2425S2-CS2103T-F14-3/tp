@@ -105,7 +105,6 @@ Navigate through sections using the table of contents below:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
 
 ### Viewing help : `help`
 
