@@ -2,22 +2,57 @@
 
 ![Ui](docs/images/Ui.png)
 
-# Overview
+# RecruitIntel
 
-This project is a Candidate Management System designed for 
-big company HR recruiters to efficiently manage candidate records. 
-The Minimum Viable Product (MVP) includes essential features for adding, 
-searching, listing, and deleting candidates. 
+## Overview
 
-# Features
+RecruitIntel is a **desktop application designed specifically for Apple's HR recruiters** to efficiently manage candidate information. While offering an easy-to-use visual interface, it features powerful text commands that help process candidate information considerably faster than traditional mouse-based applications.
 
-- Add Candidate – Store candidate details in the system.
+## Features
 
-- List All Candidates – View a list of all stored candidates.
+* **Candidate Management**
+    * Add candidates with detailed information
+    * Edit existing candidate records
+    * Delete candidate records
+    * List all candidates in the system
 
-- Find Candidate by Name – Search for a candidate using their name.
+* **Advanced Categorization**
+    * Classify candidates by skills, teams, and positions
+    * Tag candidates with relevant skills and attributes
+    * Find candidates by name with partial matching
 
-- Delete Candidate – Remove a candidate's record from the system.
+* **Interview Management**
+    * Schedule interviews with specific times and durations
+    * Sort candidates by interview times
+    * Add detailed notes about interview performance
+
+* **User Experience**
+    * Data is automatically saved
+    * Fast command-based interface
+    * Undo/redo functionality for most operations
+
+## Quick Start
+
+1. Ensure you have Java `17` or above installed.
+2. Download the latest `RecruitIntel.jar` from the [releases page](https://github.com/AY2425S2-CS2103T-F14-3/tp/releases).
+3. Create a dedicated folder for RecruitIntel.
+4. Copy the downloaded JAR file into this folder.
+5. Run the application:
+   ```
+   java -jar recruitintel.jar
+   ```
+
+## Command Examples
+
+* **Adding a candidate**:
+  ```
+  add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 j/Software Engineer tm/IOS Development t/Swift
+  ```
+
+* **Scheduling an interview**:
+  ```
+  interview 1 2025-04-01 10:00 40
+  ```
 
 # Installation
 ## Prerequisites
@@ -45,5 +80,5 @@ java -jar RecruitIntel.jar   # Running the JAR
 ```
 
 # Acknowledgements
-This project is based on the AddressBook-Level3 project created by 
+This project is based on the AddressBook-Level3 project created by
 the [SE-EDU initiative](https://se-education.org).
