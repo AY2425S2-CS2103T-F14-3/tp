@@ -53,14 +53,14 @@ Navigate through sections using the table of contents below:
    ![Ui](images/Ui.png)
 
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 j/Software Engineer tm/IOS Development` : Adds a candidate named `John Doe` applying for a `Software Engineer` position  in the `IOS Development` team.
 
     * `note 1 Strong backend experience, but lacks iOS exposure.` : Adds a note to the 1st candidate in the list.
 
-    * `interview 1 2025-04-01 10:00 40` : Schedules a 40-minute interview for the 1st candidate, scheduled at 10:00 AM on April 1, 2025.
+    * `interview 1 2025-04-01 10:00 40` : Schedules a 40-minute interview for the 1st candidate at 10:00 AM on April 1, 2025.
 
     * `sort` : Sorts the candidates by ascending order of their scheduled interview time.
 
@@ -107,12 +107,17 @@ Navigate through sections using the table of contents below:
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+### Viewing help : `help`
+
+Opens a window with a link to RecruitIntel's complete user guide
 
 **Format**:
 ```
 help
 ```
+
+**Key behaviors**:
+* Window can be resized and moved
 
 Expected output: <br>
 ![result for help message command'](images/helpMessage.png)
@@ -128,7 +133,7 @@ tm/TEAM_APPLIED [t/TAG]…​
 ```
 
 **Key behaviors**:
-* All details except tags are mandatory
+* All fields except tags are mandatory
 * A candidate is considered a duplicate if they share the same email as an existing candidate.
 * Email must follow these rules:
     - Before @: Must start/end with letters/numbers and can contain (+, ., -) in between
@@ -176,8 +181,8 @@ list
 * Displays candidates in order of when they were added
 
 💡 **Tips**:
-* Use this to reset view after filtering
-* Combine with `sort` to organize the full list
+* Use this to reset the view of candidates after multiple rounds of filtering
+* Helpful for getting correct indexes before using commands like `edit` or `delete`
 
 Expected output:
 ```
@@ -195,7 +200,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [j/JOB_POSITION_APPLIED]
 ```
 
 **Key behaviors**:
-* `INDEX` must be a positive integer from the displayed list and not greater than the number of candidates in RecruitIntel
+* `INDEX` must be a valid positive integer from the currently displayed list and not greater than the total number of candidates shown
 * At least one field must be provided for editing
 
 **Examples**:
@@ -209,7 +214,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [j/JOB_POSITION_APPLIED]
   ```
 
 💡 **Tips**:
-* Use `list` to see all candidates first
+* Use `list` to see all candidates and their indexes first
 * An empty tag field (`t/`) removes all tags for that candidate
 
 ⚠️ **Warning**:
@@ -246,8 +251,9 @@ classify [t/TAG]... [tm/TEAM] [j/JOB_POSITION]
   ```
 
 💡 **Tips**:
-* Use partial matches for flexibility
-* Combine with `sort` command to organize results by interview time
+* Start with broader criteria and narrow down gradually
+* Combine with `note` command to add observations about grouped candidates
+* Regular classification helps identify skill patterns in your candidate pool
 
 ⚠️ **Warning**: 
 * Multiple job positions or teams in one command are not allowed
@@ -279,8 +285,7 @@ find KEYWORD [MORE_KEYWORDS]
   ```
   
 💡 **Tips**:
-* Use shorter keywords for broader searches
-* Try different name variations
+* Consider common name variations (e.g., "Rob" for "Robert") when searching through a large pool of candidates
 
 Expected output:
 ![result for 'find George'](images/FindScreenshot.png)
@@ -295,9 +300,9 @@ note INDEX NOTE_TEXT
 ```
 
 **Key behaviors**:
-* `INDEX` must be a positive integer from the displayed list and not greater than the number of candidates in RecruitIntel
+* `INDEX` must be a valid positive integer from the currently displayed list and not greater than the total number of candidates shown
 * Note text has a maximum of 450 characters
-* New note overwrites any existing note for that candidate
+* New notes overwrites any existing notes for that candidate
 
 **Examples**:
 * Add interview observations:
@@ -312,7 +317,7 @@ note INDEX NOTE_TEXT
 
 ⚠️ **Warning**:
 * Cannot recover overwritten notes
-* Stay within character limit
+* Stay within the character limit
 
 Expected output:
 ```
@@ -330,7 +335,7 @@ delete INDEX
 ```
 
 **Key behaviors**:
-* Deletion is permanent (but can be undone)
+* Deletion is permanent (but can be undone using the undo command)
 
 **Examples**:
 * Delete after listing:
@@ -341,7 +346,7 @@ delete INDEX
 
 💡 **Tips**:
 * Use `undo` if needed
-* Check index in current view
+* Check whether the index is valid in the current view of candidates
 
 ⚠️ **Warning**:
 * Action cannot be reversed after closing app
@@ -356,7 +361,7 @@ Team: iOS Development; Tags: [UIKit][Swift]
 
 ### Scheduling an interview: `interview`
 
-Sets or updates interview timing for a candidate.
+Sets or updates interview times for a candidate.
 
 **Format**:
 ```
@@ -364,7 +369,7 @@ interview INDEX START_TIME DURATION
 ```
 
 **Key behaviors**:
-* `INDEX` must be a positive integer from the displayed list and not greater than the number of candidates in RecruitIntel
+* `INDEX` must be a valid positive integer from the currently displayed list and not greater than the total number of candidates shown
 * START_TIME format: yyyy-MM-dd HH:mm - uses the 24-hour time format
 * DURATION must be a multiple of 5 and cannot be over 1440
 * Interviews happen sequentially - Each candidate can only have one interview scheduled at a time
@@ -378,8 +383,7 @@ interview INDEX START_TIME DURATION
   ```
 
 💡 **Tips**:
-* Leave buffer time between interviews
-* Use `sort` to see the schedule
+* Use `sort` to see the schedule for interview times
 * Consider time zones for remote interviews
 * Standard duration examples:
     - 30 mins: Initial screening
@@ -388,6 +392,7 @@ interview INDEX START_TIME DURATION
 
 ⚠️ **Warning**:
 * Verify date format carefully
+* Double-check the index when scheduling interviews in filtered views
 
 Expected output:
 ```
@@ -416,7 +421,7 @@ sort
   ```
 
 💡 **Tips**:
-* Sorting after modifying or adding candidates helps maintain a clear view of the schedule.
+* Sorting after modifying or adding candidates helps maintain a clear view of when candidates have interviews.
 
 Expected output:
 ```
@@ -500,12 +505,12 @@ exit
 
 ### Data Management
 
-RecruitIntel handles your data with care and provides features to manage data:
+RecruitIntel handles your data with care and provides several ways to manage data.
 
 #### Automatic Saving
 * All changes are saved immediately
 * No manual save required
-* Data does not disappear after exiting the application
+* Data remains after exiting the application
 
 #### Data File
 * Location: `[JAR file location]/data/recruitintel.json`
@@ -522,28 +527,27 @@ Furthermore, certain edits can cause RecruitIntel to behave in unexpected ways (
 
 ## FAQ
 
-**Q**: How do I transfer my candidate data to another computer?
-**A**: Follow these steps:
+**Q**: How do I transfer my candidate data to another computer?<br>
+**A**: Follow these steps:<br>
 1. Install RecruitIntel on the new computer
 2. Locate the data file (`recruitintel.json`) on your old computer
 3. Copy this file to the same location on the new computer
 4. Start RecruitIntel on the new computer
 
-**Q**: What should I do if the application won't start?
-**A**: Try these solutions:
+**Q**: What should I do if the application won't start?<br>
+**A**: Try these solutions:<br>
 1. Verify Java 17 is installed correctly
 2. Check the data file for corruption
 3. Delete `preferences.json` if it exists
-4. Contact support if issues persist
+4. Contact support if issues persist: `recruitintel@gmail.com`
 
-**Q**: Why does my `classify` command return no results?
-**A**: This could happen for several reasons:
-1. Your search criteria might be too specific - try removing some filters
-2. The tags or team names might be misspelled - check for typos
-3. The candidates might not have all the specified attributes - try searching with fewer criteria
+**Q**: Why does my `classify` command return no results?<br>
+**A**: This could happen for several reasons:<br>
+1. Your search criteria might be too specific, try removing some filters
+2. Typos in the tags, team names, or job positions
 
-**Q**: Why can't I schedule an interview for a specific time?
-**A**: Check these potential issues:
+**Q**: Why can't I schedule an interview for a specific time?<br>
+**A**: Check these potential issues:<br>
 1. Ensure the date format is correct (YYYY-MM-DD)
 2. Verify the time is in 24-hour format
 3. Make sure the duration is a multiple of 5 minutes
@@ -556,12 +560,12 @@ Furthermore, certain edits can cause RecruitIntel to behave in unexpected ways (
     * **Prevention**: Close application before changing display setup
 
 2. **Help Window Behavior**
-    * **Problem**: Minimized Help Window doesn't respond to help command. The Help Window remains minimized
+    * **Problem**: Minimized help window doesn't respond to help command. The help window remains minimized
     * **Solution**: Manually restore the minimized Help Window
     * **Workaround**: Close and reopen application
 
 3. **Complex Command Formatting**
-    * **Problem**: Commands with multiple tags or long addresses might be difficult to format correctly
+    * **Problem**: Commands with multiple tags or long addresses are difficult to format correctly
     * **Solution**: Break down complex commands into smaller steps
     * **Example**: Instead of adding all tags at once, use `edit` to add tags gradually
     * **Prevention**: Use the `help` command to verify command format before execution
@@ -574,7 +578,7 @@ Furthermore, certain edits can cause RecruitIntel to behave in unexpected ways (
 
 5. **Search Performance with Large Pool of Candidates**
     * **Problem**: Slow search time when searching through extensive candidate lists
-    * **Solution**: Use more specific search criteria and combine classify with find
+    * **Solution**: Use more specific search criteria and combine the `classify` command with the `find` command
     * **Prevention**: Archive or remove outdated candidates regularly
     * **Tip**: Start with broader searches and refine gradually
 
@@ -593,6 +597,11 @@ The following terms are used throughout this guide:
 * **JSON file**: A type of computer file that stores candidate information.
 
 * **Terminal/Command Prompt**: A program where you type commands to run RecruitIntel. It is a text-based way to start and control the application.
+
+* **Field**: A specific piece of information about a candidate, such as their name, phone number, or email address. Fields are the individual components that make up a candidate's record and are identified by prefixes (e.g., `n/` for name, `p/` for phone number).
+
+* **State**: The current condition or status of the application, including all candidate data, display settings, and any active filters. When you use commands like `undo` or `redo`, you are moving between different states of the application.
+
 
 ## Command Summary
 
