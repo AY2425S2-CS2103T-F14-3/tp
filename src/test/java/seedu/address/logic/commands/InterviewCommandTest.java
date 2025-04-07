@@ -53,8 +53,7 @@ public class InterviewCommandTest {
         InterviewCommand interviewCommand = new InterviewCommand(outOfBoundIndex,
                 new StartTime("2025-04-01 14:00"), new Duration("30"));
 
-        assertCommandFailure(interviewCommand, model,
-                String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, model.getFilteredPersonList().size()));
+        assertCommandFailure(interviewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -67,8 +66,7 @@ public class InterviewCommandTest {
         InterviewCommand interviewCommand = new InterviewCommand(outOfBoundIndex,
                 new StartTime("2025-04-01 14:00"), new Duration("30"));
 
-        assertCommandFailure(interviewCommand, model,
-                String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, model.getFilteredPersonList().size()));
+        assertCommandFailure(interviewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

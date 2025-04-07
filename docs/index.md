@@ -8,10 +8,7 @@ title: RecruitIntel
 
 ![Ui](images/Ui.png)
 
-**This project is a Candidate Management System designed for
-big company HR recruiters to efficiently manage candidate records.
-The Minimum Viable Product (MVP) includes essential features for adding,
-searching, listing, and deleting candidates.**
+RecruitIntel is a **desktop application designed specifically for Apple's HR recruiters** to efficiently manage candidate information. While offering an easy-to-use visual interface, it features powerful text commands that help process candidate information considerably faster than traditional mouse-based applications.
 
 * If you are interested in using RecruitIntel, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
