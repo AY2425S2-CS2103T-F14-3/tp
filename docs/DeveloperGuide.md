@@ -670,5 +670,149 @@ Enter exit in the command box. This will exit the app.
        Expected: Previously undone action reapplied. The person list information is changed.
 
 
-## **Planned Enhancement**
+## **Planned Enhancements**
+
+Team size: 4
+1. **Support Multiple Job Applications per Candidate**: Currently, candidates can only apply for one job position and one team at a time, which doesn't reflect real-world scenarios where candidates might be able to apply for multiple roles. We plan to enhance this by:
+    * Modifying the `add` command to accept multiple job positions and teams:
+      ```
+      add n/NAME p/PHONE e/EMAIL a/ADDRESS j/[JOB_POSITION_1, JOB_POSITION_2] 
+      tm/[TEAM_1, TEAM_2] [t/TAG]...
+      ```
+    * Example usage:
+      ```
+      add n/John Doe p/98765432 e/johnd@example.com a/123 Apple Park Way 
+      j/[Software Engineer, Product Manager] tm/[iOS, Product] t/Swift 
+      t/UIKit t/Agile
+      ```
+    * Updating the UI to display multiple roles in the candidate card
+    * Enhancing the `classify` command to match any of the candidate's roles:
+      ```
+      classify j/Software Engineer
+      // Will show candidates who applied for Software Engineer, 
+      // even if they applied for other roles too
+      ```
+    * Modifying the storage format to support arrays of job positions and teams per candidate
+
+2. **Prevent Scheduling Interviews in the Past**: Currently, RecruitIntel allows scheduling interviews for past dates, which can lead to confusion and invalid data. We plan to enhance the interview scheduling feature by:
+    * Adding date validation to ensure interview times are always in the future:
+      ```
+      // Current behavior
+      interview 1 2023-01-01 10:00 30    // Allows scheduling in the past
+      
+      // Enhanced behavior
+      interview 1 2023-01-01 10:00 30    
+      // Error: Cannot schedule interviews in the past. The interview date 
+      // must be after the current date and time
+      ```
+    * Implementing real-time date validation that:
+        - Checks if the proposed interview date/time is at least 1 hour in the future
+        - Provides helpful error messages with the current date/time for reference
+
+3. **Enhanced Interview Sorting with Past Interview Handling**: Currently, the sort command doesn't distinguish between upcoming and past interviews, making it difficult to figure out if an interview has happened or not. We plan to enhance the sorting functionality by:
+    * Adding flags to the sort command for more flexible sorting options:
+      ```
+      //Default: sorts all interviews
+      sort 
+      
+      //Sorts interviews that haven't been completed first                    
+      sort --nc             
+      ```
+    * Key behaviors:
+        - sort --nc sorts upcoming interviews and places past interviews at the end, right before candidates with no interviews
+        - Adds visual indicators for past interviews in the UI
+
+4. **Improved Tag Management**: Currently, tags are completely replaced when editing, which can lead to accidental tag deletion. We plan to enhance tag management by:
+    * Adding specific tag commands:
+      ```
+      tag 1 add t/Python        // Adds Python tag to candidate #1
+      tag 1 remove t/Python     // Removes only Python tag
+      tag 1 clear              // Removes all tags
+      ```
+    * Example usage scenarios:
+      ```
+      // Current behavior (using edit command)
+      edit 1 t/Python          // Replaces ALL existing tags with just Python
+      
+      // Enhanced behavior (using new tag commands)
+      tag 1 add t/Python       // Adds Python while preserving existing tags
+      tag 1 remove t/Java      // Removes only Java tag, keeps others
+      ```
+    * Implementing tag validation:
+        - Prevents duplicate tags automatically
+        - Warns before removing all tags
+    * Adding tag management features:
+        - Group related tags (e.g., programming languages, soft skills)
+
+5. **Enhanced Interview Command with Types**: Currently, the interview command only captures timing information without structuring the recruitment process. We plan to enhance the interview scheduling system by:
+    * Adding interview type for better tracking of candidates in the recruitment process:
+      ```
+      //Schedule HR Interview
+      interview 1 2024-03-20 14:00 60 --ty HR           
+      
+      //Schedule 1st Technical Interview
+      interview 1 2024-03-22 10:00 90 --ty TECH --n 1   
+      
+      //Schedule Hiring Manager Interview
+      interview 1 2024-03-25 15:00 45 --ty HM         
+      ```
+    * Supporting standard interview types:
+      - HR: Initial screening interview
+      - TECH: Technical assessment (can be numbered 1,2,...)
+      - HM: Hiring manager interview
+      - TEAM: Team fit discussion
+      - SYS: System design interview
+      - CODE: Coding assessment
+      - BEHAV: Behavioral interview
+      - FIN: Final round interview
+      
+    * Managing interview status:
+      ```
+      // Removes the scheduled interview for candidate #1
+      interview 1 clear                
+      ```
+    * Adding type-based filtering:
+      ```
+      list interview --ty TECH   // List candidates with technical interviews
+      ```
+
+6. **Enhanced Notes Management**: Currently, notes can only be added as a single entry with limited character space. We plan to enhance the notes functionality by:
+    * Adding commands for more flexible note management:
+      ```
+      // Adds a note entry for candidate #1
+      note 1 add Great technical skills in the system design interview    
+      
+      // Appends some text to the 1st note
+      note 1 append 1 Also showed strong team collaboration mindset        
+      
+      // Clears all text of the 1st note
+      note 1 clear 1          
+      
+      // Removes the second note                                            
+      note 1 remove 2                                                   
+      ```
+    * Supporting enhanced note features:
+        - Increased character limit to 1500 characters for each note
+        - Multiple note entries for each candidate
+        - Timestamp for each note entry
+    * Example usage:
+      ```
+      > note 1 add Technical Interview: Candidate showed strong Java knowledge.
+      Added note #1 to John Doe
+      
+      > note 1 append Particularly impressed with his system design skills.
+      Updated note #1 for John Doe
+      
+      > note 1 add Strong communication and intrapersonal skills. Involved 
+      with alot of social work and clubs at university.
+      Added note #2 to John Doe
+      
+      > note 1 list
+      Notes for John Doe:
+      1. Technical Interview: Candidate showed strong Java knowledge. 
+      Particularly impressed with his system design skills.
+      2. Strong communication and intrapersonal skills. Involved with alot 
+      of social work and clubs at university.
+      ```
+      
 
