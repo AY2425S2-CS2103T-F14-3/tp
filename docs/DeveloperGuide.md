@@ -712,27 +712,15 @@ Team size: 4
 3. **Enhanced Interview Sorting with Past Interview Handling**: Currently, the sort command doesn't distinguish between upcoming and past interviews, making it difficult to figure out if an interview has happened or not. We plan to enhance the sorting functionality by:
     * Adding flags to the sort command for more flexible sorting options:
       ```
-      sort                     // Default: sorts all interviews
-      sort --nc              // nc: not completed, sorts interviews
-                            //  that haven't been completed first
+      //Default: sorts all interviews
+      sort 
+      
+      //Sorts interviews that haven't been completed first                    
+      sort --nc             
       ```
     * Key behaviors:
         - sort --nc sorts upcoming interviews and places past interviews at the end, right before candidates with no interviews
         - Adds visual indicators for past interviews in the UI
-    * Example output:
-      ```
-      UPCOMING INTERVIEWS:
-      1. John Doe (2024-03-20 10:00)
-      2. Jane Smith (2024-03-21 14:00)
-      
-      PAST INTERVIEWS:
-      3. Alex Johnson (2024-03-01 15:00) [Completed]
-      4. Sarah Williams (2024-03-10 11:00) [Completed]
-      
-      NO INTERVIEWS SCHEDULED:
-      5. Mike Brown
-      6. Lisa Chen
-      ```
 
 4. **Improved Tag Management**: Currently, tags are completely replaced when editing, which can lead to accidental tag deletion. We plan to enhance tag management by:
     * Adding specific tag commands:
@@ -769,8 +757,6 @@ Team size: 4
       interview 1 2024-03-25 15:00 45 --ty HM         
       ```
     * Supporting standard interview types:
-      ```
-      Available Types:
       - HR: Initial screening interview
       - TECH: Technical assessment (can be numbered 1,2,...)
       - HM: Hiring manager interview
@@ -779,7 +765,7 @@ Team size: 4
       - CODE: Coding assessment
       - BEHAV: Behavioral interview
       - FIN: Final round interview
-      ```
+      
     * Managing interview status:
       ```
       // Removes the scheduled interview for candidate #1
