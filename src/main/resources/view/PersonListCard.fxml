@@ -2,80 +2,74 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" styleClass="candidate-card">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" percentWidth="54" />
-      <ColumnConstraints hgrow="SOMETIMES" percentWidth="33" />
-    </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="140" GridPane.columnIndex="0">
-      <padding>
-        <Insets top="8" right="5" bottom="8" left="15" />
-      </padding>
-      <HBox spacing="0.5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-      </HBox>
-      <Region minHeight="12" />
-      <FlowPane fx:id="tags" />
-      <Region minHeight="12" />
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="candidate-card" minWidth="800" spacing="0">
+  <!-- Main details section -->
+  <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" minWidth="350">
+    <padding>
+      <Insets top="8" right="0" bottom="8" left="15" />
+    </padding>
+    <HBox spacing="0.5" alignment="CENTER_LEFT">
+      <Label fx:id="id" styleClass="cell_big_label">
+        <minWidth>
+          <Region fx:constant="USE_PREF_SIZE" />
+        </minWidth>
+      </Label>
+      <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+    </HBox>
+    <Region minHeight="12" />
+    <FlowPane fx:id="tags" />
+    <Region minHeight="12" />
+    <HBox spacing="5">
+      <Label fx:id="phoneLabel" styleClass="cell_bold_label" text="Contact Number:" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+    </HBox>
+    <HBox spacing="5">
+      <Label fx:id="emailLabel" styleClass="cell_bold_label" text="Email:" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+    </HBox>
+    <HBox spacing="5">
+      <Label fx:id="addressLabel" styleClass="cell_bold_label" text="Address:" />
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+    </HBox>
+    <HBox spacing="5">
+      <Label fx:id="jobPositionLabel" styleClass="cell_bold_label" text="Job Position Applied:" />
+      <Label fx:id="jobPosition" styleClass="cell_small_label" text="\$jobPosition" />
+    </HBox>
+    <HBox spacing="5">
+      <Label fx:id="teamLabel" styleClass="cell_bold_label" text="Team Applied:" />
+      <Label fx:id="team" styleClass="cell_small_label" text="\$team" />
+    </HBox>
+    <VBox fx:id="interviewDetailsBox">
       <HBox spacing="5">
-        <Label fx:id="phoneLabel" styleClass="cell_bold_label" text="Contact Number:" />
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="startTimeLabel" styleClass="cell_bold_label" text="Interview Start Time:" />
+        <Label fx:id="startTime" styleClass="cell_small_label" text="\$startTime" />
       </HBox>
       <HBox spacing="5">
-        <Label fx:id="emailLabel" styleClass="cell_bold_label" text="Email:" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label fx:id="durationLabel" styleClass="cell_bold_label" text="Interview Duration:" />
+        <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
       </HBox>
-      <HBox spacing="5">
-        <Label fx:id="addressLabel" styleClass="cell_bold_label" text="Address:" />
-        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      </HBox>
-      <HBox spacing="5">
-        <Label fx:id="jobPositionLabel" styleClass="cell_bold_label" text="Job Position Applied:" />
-        <Label fx:id="jobPosition" styleClass="cell_small_label" text="\$jobPosition" />
-      </HBox>
-      <HBox spacing="5">
-        <Label fx:id="teamLabel" styleClass="cell_bold_label" text="Team Applied:" />
-        <Label fx:id="team" styleClass="cell_small_label" text="\$team" />
-      </HBox>
-      <VBox fx:id="interviewDetailsBox">
-        <HBox spacing="5">
-          <Label fx:id="startTimeLabel" styleClass="cell_bold_label" text="Interview Start Time:" />
-          <Label fx:id="startTime" styleClass="cell_small_label" text="\$startTime" />
-        </HBox>
-        <HBox spacing="5">
-          <Label fx:id="durationLabel" styleClass="cell_bold_label" text="Interview Duration:" />
-          <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
-        </HBox>
-      </VBox>
     </VBox>
+  </VBox>
 
-    <VBox alignment="TOP_LEFT" minHeight="140" GridPane.columnIndex="1" styleClass="notes-section">
+  <!-- Notes section with no margin/padding on left side -->
+  <VBox alignment="TOP_LEFT" styleClass="notes-section" minWidth="550" prefWidth="550" HBox.hgrow="NEVER">
+    <padding>
+      <Insets top="8" right="10" bottom="8" left="0" />
+    </padding>
+    <Label text="Interviewer Notes:" styleClass="notes-header" />
+    <Region minHeight="8" />
+    <StackPane styleClass="notes-display-container" VBox.vgrow="ALWAYS">
       <padding>
-        <Insets top="8" right="10" bottom="8" left="10" />
+        <Insets top="8" right="8" bottom="8" left="8" />
       </padding>
-      <Label text="Interviewer Notes:" styleClass="notes-header" />
-      <Region minHeight="8" />
-
-      <StackPane styleClass="notes-display-container" VBox.vgrow="ALWAYS">
-        <padding>
-          <Insets top="8" right="8" bottom="8" left="8" />
-        </padding>
-        <Label fx:id="interviewerNotes" text="" styleClass="notes-content" wrapText="true" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
-      </StackPane>
-    </VBox>
-  </GridPane>
+      <Label fx:id="interviewerNotes" text="" styleClass="notes-content" wrapText="true" />
+    </StackPane>
+  </VBox>
 </HBox>

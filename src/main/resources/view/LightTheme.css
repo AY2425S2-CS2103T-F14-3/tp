@@ -103,6 +103,7 @@
     -fx-padding: 0;
     -fx-background-color: #ffffff;
     -fx-border-radius: 8px;
+    -fx-min-width: 820px;
 }
 
 .list-cell {
@@ -159,6 +160,16 @@
 }
 
 /* Layout containers */
+.candidate-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
+    -fx-padding: 12px 12px 12px 12px;
+    -fx-min-width: 800px;
+    -fx-spacing: 0;
+}
+
 .stack-pane {
      -fx-background-color: #ffffff;
 }
@@ -411,6 +422,11 @@
     -fx-border-radius: 8px;
     -fx-border-color: #e6e6e6;
     -fx-border-width: 1px;
+    -fx-min-width: 550px;
+    -fx-pref-width: 550px;
+    -fx-max-width: 600px;
+    -fx-padding: 8px 10px 8px 8px;
+    -fx-translate-x: -40;
 }
 
 .notes-header {
@@ -436,6 +452,7 @@
     -fx-pref-width: 500px;
     -fx-max-width: 500px;
     -fx-line-spacing: 4px;
+    -fx-text-alignment: left;
 }
 
 /* Department tag colors */
