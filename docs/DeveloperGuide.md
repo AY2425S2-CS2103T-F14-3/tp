@@ -59,7 +59,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -97,7 +97,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-F14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -568,7 +568,7 @@ Enter exit in the command box. This will exit the app.
 
 ### Adding a person
 
-1. Adding a person in the person list
+Adding a person in the person list:
 
    1. Test case `add n/Byran high p/33665544 e/byranh@example.com a/123, Clementi Rd, 335544 j/Hardware Engineer tm/Machine Learning System t/C t/AI` <br>
    Assumption: We assume there is no person with duplicate email. <br>
@@ -581,7 +581,7 @@ Enter exit in the command box. This will exit the app.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+Deleting a person while all persons are being shown:
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
@@ -595,7 +595,7 @@ Enter exit in the command box. This will exit the app.
       Expected: Similar to previous.
 
 ### Editing a person's information
-1. Editing a person in the person list
+Editing a person in the person list:
    1. Assumption: We assume the index here is valid if it is a positive integer <br>
    Test case: `edit 1 t/Java` <br>
    Expected: The Tag of the first person in the list is changed to Java
@@ -612,12 +612,12 @@ Enter exit in the command box. This will exit the app.
    Expected: the field indicated by the prefix is edit to the information given.
 
 ### Finding a person
-1. Finding a person by name
+Finding a person by name:
    1. Test case: `find alice` <br>
       Expected: All persons with the name that contains `alice` are shown in the list. Other persons are hidden.
 
 ### Classifying Persons
-1. Classifying Persons by some of tags, team and jobPosition
+Classifying Persons by some of the tags, team and jobPosition:
    1. Test case: `classify t/Python tm/Design j/Software Engineer` <br>
      Expected: Displays persons matching all given filters.
 
@@ -625,49 +625,49 @@ Enter exit in the command box. This will exit the app.
      Expected: Displays persons have tag Python.
 
 ### Clearing All Persons
-1. Clearing All Persons in the list
-    1. Test Case: `clear` <br> Expected: All entries are deleted. Application shows an empty list.
+Clearing All Persons in the list:
+1. Test Case: `clear` <br> Expected: All entries are deleted. Application shows an empty list.
 
 ### Scheduling an Interview
-1. Scheduling an interview with duration for a person with positive integer indexes
-    1. Assumption: The minutes of StartTime and Duration must be multiple of 5.
-    2. Test case: `interview 1 2025-04-01 10:00 40` <br>
-      Expected: Interview scheduled with startTime 2025-04-01 10:00 and Duration 40;
-    3. Test case: `interview 0 2025-04-12 14:00 20` <br>
-       Expected: No interview is scheduled, an error message will be displayed.
-    4. Other invalid interview command to try: <br>
-       `interview 1 2025-04-12 14:00 23` <br>
-       `interview 1 2025-04-12 14:12 20` <br>
-       `interview 1 2025 04-12 14:12 15` <br>
-       Expected: No interview is scheduled, an error message will be displayed.
+Scheduling an interview with duration for a person with positive integer indexes:
+1. Assumption: The minutes of StartTime and Duration must be multiple of 5.
+2. Test case: `interview 1 2025-04-01 10:00 40` <br>
+  Expected: Interview scheduled with startTime 2025-04-01 10:00 and Duration 40;
+3. Test case: `interview 0 2025-04-12 14:00 20` <br>
+   Expected: No interview is scheduled, an error message will be displayed.
+4. Other invalid interview command to try: <br>
+   `interview 1 2025-04-12 14:00 23` <br>
+   `interview 1 2025-04-12 14:12 20` <br>
+   `interview 1 2025 04-12 14:12 15` <br>
+   Expected: No interview is scheduled, an error message will be displayed.
 
 ### Adding a Note
-1. Adding a note for a person
-    1. Assumption: The index here is valid if it is a positive integer <br>
-    2. Test case: `note 1 Excellent technical skills observed during the interview.` <br>
-       Expected: Note successfully added to the person's details.
+Adding a note for a person:
+1. Assumption: The index here is valid if it is a positive integer <br>
+2. Test case: `note 1 Excellent technical skills observed during the interview.` <br>
+   Expected: Note successfully added to the person's details.
 
 ### Sorting the List
-1. Sort the persons by interview startTime in the current list by ascending order. 
-    1. Test case: `sort` <br>
+Sort the persons by interview startTime in the current list by ascending order:
+1. Test case: `sort` <br>
        Expected: List sorted by person's interview time. For persons without interviews,they are displayed at the end of the list.
 
 ### Viewing Help
-1. Viewing help for the commands
-  1. Test case: `help` <br>
-     Expected: Help window opens showing the link of User Guide.
+Viewing help for the commands:
+1. Test case: `help` <br> 
+        Expected: Help window opens showing the link of User Guide.
 
 ### Undo
-1. Restores the previous state
-    1. Assumption: Last command belongs to modifying commands (add, delete, edit, etc.)
-    2. Test case: undo <br>
-       Expected: Last operation is reversed. The person list is restored to the previous state.
+Restores the previous state:
+1. Assumption: Last command belongs to modifying commands (add, delete, edit, etc.)
+2. Test case: undo <br>
+   Expected: Last operation is reversed. The person list is restored to the previous state.
 
 ### Redo
-1. Reapplies the last undone action
-    1. Assumption: Last command is undo.
-    2. Test case: redo <br>
-       Expected: Previously undone action reapplied. The person list information is changed.
+Reapplies the last undone action:
+1. Assumption: Last command is undo.
+2. Test case: redo <br>
+   Expected: Previously undone action reapplied. The person list information is changed.
 
 
 ## **Planned Enhancements**
