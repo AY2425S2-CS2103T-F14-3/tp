@@ -16,7 +16,6 @@ public class StartTime implements Comparable<StartTime> {
             + "Example: \"2025-04-01 10:15\"";
 
     public static final String VALIDATION_REGEX = "^$|^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}$";
-
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public final String value;
     private final LocalDateTime parsedStartTime;
@@ -49,18 +48,50 @@ public class StartTime implements Comparable<StartTime> {
             return true;
         }
 
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
         try {
-            if (!test.matches(VALIDATION_REGEX)) {
+            LocalDateTime parsed = LocalDateTime.parse(test, FORMATTER);
+
+            int year = parsed.getYear();
+            int month = parsed.getMonthValue();
+            int day = Integer.parseInt(test.substring(8, 10));
+
+            if (day > getDaysInMonth(year, month)) {
                 return false;
             }
-            LocalDateTime parsed = LocalDateTime.parse(test, FORMATTER);
+
             return isMinuteMultipleOfFive(parsed);
         } catch (DateTimeParseException e) {
             return false;
         }
     }
 
+    private static int getDaysInMonth(int year, int month) {
+        switch (month) {
+        case 1: // January
+        case 3: // March
+        case 5: // May
+        case 7: // July
+        case 8: // August
+        case 10: // October
+        case 12: // December
+            return 31;
+        case 4: // April
+        case 6: // June
+        case 9: // September
+        case 11: // November
+            return 30;
+        default: // February
+            return isLeapYear(year) ? 29 : 28;
+        }
+    }
 
+    private static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
 
     public static boolean isMinuteMultipleOfFive(LocalDateTime dateTime) {
         return dateTime.getMinute() % 5 == 0;
