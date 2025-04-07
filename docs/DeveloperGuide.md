@@ -670,7 +670,7 @@ Enter exit in the command box. This will exit the app.
        Expected: Previously undone action reapplied. The person list information is changed.
 
 
-## **Planned Enhancement**
+## **Planned Enhancements**
 
 Team size: 4
 1. **Support Multiple Job Applications per Candidate**: Currently, candidates can only apply for one job position and one team at a time, which doesn't reflect real-world scenarios where candidates might be able to apply for multiple roles. We plan to enhance this by:
