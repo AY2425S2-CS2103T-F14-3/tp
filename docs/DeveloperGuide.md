@@ -193,7 +193,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Proposed Implementation
 
@@ -275,8 +275,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -310,26 +308,29 @@ A highly efficient, CLI-driven contact management system that enables Apple’s 
 
 ### User stories
 
+### User stories
+
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​   | I want to …​                                                   | So that I can…​                                                                       |
-|--------|-----------|----------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| `* * *` | new user  | see usage instructions                                         | refer to instructions when I forget how to use the App or when I start using the app. |
-| `* * *` | recruiter | add a candidate’s name, contact details, and role applied for  | keep track of them easily.                                                            |
-| `* * *` | recruiter | list all candidates in the system                              | see at a glance who is currently in the database.                                     |
-| `* * *` | recruiter | remove outdated or irrelevant candidate records                | maintain a clean list.                                                                |
-| `* * *` | recruiter | find candidates by their names or skills                       | quickly locate specific individuals.                                                  |
-| `* * *` | recruiter | Record the candidate's interview performance                   | facilitate subsequent admission evaluation.                                           |
-| `* * *` | recruiter | Add candidates' interview time                                 | schedule an interview.                                                                |
-| `* *`  | recruiter | sort candidates by increasing interview time                   | who is the fisrt to be interviewed.                                                   |
-| `* *`  | recruiter | edit a candidate's details (e.g. phone, email)                 | correct mistakes and keep data accurate conveniently.                                 |
-| `* *`  | recruiter | classify candidates by a combination of attributes             | filter candidates based on specific criteria.                                         |
+|----------|-----------|----------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `* * *`  | new user  | see usage instructions                                         | refer to instructions when I forget how to use the App or when I start using the app. |
+| `* * *`  | recruiter | add a candidate’s name, contact details, and role applied for  | keep track of them easily.                                                            |
+| `* * *`  | recruiter | list all candidates in the system                              | see at a glance who is currently in the database.                                     |
+| `* * *`  | recruiter | remove outdated or irrelevant candidate records                | maintain a clean list.                                                                |
+| `* * *`  | recruiter | find candidates by their names or skills                       | quickly locate specific individuals.                                                  |
+| `* * *`  | recruiter | record the candidate's interview performance                   | facilitate subsequent admission evaluation.                                           |
+| `* * *`  | recruiter | add candidates' interview time                                 | schedule an interview.                                                                |
+| `* *`    | recruiter | sort candidates by increasing interview time                   | know who is the first to be interviewed.                                              |
+| `* *`    | recruiter | edit a candidate's details (e.g. phone, email)                 | correct mistakes and keep data accurate conveniently.                                 |
+| `* *`    | recruiter | classify candidates by a combination of attributes             | filter candidates based on specific criteria.                                         |
+
 ### Use cases
 
 (For all use cases below, the **System** is the `RecruitIntel` and the **Actor** is the `user`, unless specified otherwise)
 
 
-## Use Case: UC01 - Add New Candidate
+#### Use Case: UC01 - Add New Candidate
 
 **MSS**
 1. HR Recruiter adds a new candidate.
@@ -358,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
       Use case ends.
 
-## Use Case: UC02 - List All Candidate
+#### Use Case: UC02 - List All Candidate
 
 **MSS**
 1. HR Recruiter chooses to list all candidates.
@@ -366,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. **System** displays the list of candidates.  
    Use case ends.
 
-## Use Case: UC03 - Edit Candidate Information
+#### Use Case: UC03 - Edit Candidate Information
 
 **MSS**
 1. HR Recruiter chooses to edit a candidate.
@@ -392,7 +393,7 @@ Use case ends.
 
 Use case ends.
 
-## Use Case: UC04 - Classify Candidate
+#### Use Case: UC04 - Classify Candidate
 **MSS**
 1. HR Recruiter chooses to classify some candidates based on tags.
 2. **System** requests the tags to be used to classify.
@@ -400,7 +401,7 @@ Use case ends.
 
 Use case ends.
 
-## Use Case: UC05 - Find Candidate
+#### Use Case: UC05 - Find Candidate
 **MSS**
 1. HR Recruiter chooses to find a candidate.
 2. **System** requests the keywords to be used to find candidate.
@@ -409,7 +410,7 @@ Use case ends.
 
    Use case ends.
 
-## Use Case: UC06 - Enter Note for Candidate
+#### Use Case: UC06 - Enter Note for Candidate
 **MSS**
 1. HR Recruiter chooses to enter a note for a candidate.
 2. **System** requests the candidate that to be added a note.
@@ -432,7 +433,7 @@ Use case ends.
       Use case resumes from step 6.
 Use case ends.
 
-## Use Case: UC07 - Delete Candidate
+#### Use Case: UC07 - Delete Candidate
 
 **MSS**
 1. HR Recruiter chooses to delete a candidate.
@@ -451,7 +452,7 @@ Use case ends.
 
 Use case ends.
 
-## Use Case: UC08 - Add Interview Time Information for Candidate
+#### Use Case: UC08 - Add Interview Time Information for Candidate
 **MSS**
 1. HR Recruiter chooses to add interview time information for a candidate.
 2. **System** requests the candidate to be added interview time information.
@@ -475,7 +476,7 @@ Use case ends.
 
 Use case ends.
 
-## Use Case: UC09 - Sort Candidates
+#### Use Case: UC09 - Sort Candidates
 
 **MSS**
 1. HR Recruiter chooses to sort candidates.
@@ -483,7 +484,7 @@ Use case ends.
 3. **System** displays the sorted list.  
    Use case ends.
 
-## Use Case: UC10 - Undo Actions
+#### Use Case: UC10 - Undo Actions
 **MSS**
 1. HR Recruiter chooses to undo the last action.
 2. **System** undoes the last action.  
@@ -495,7 +496,7 @@ Use case ends.
 
 Use case ends.
 
-## Use Case: UC11 - Redo Actions
+#### Use Case: UC11 - Redo Actions
 **MSS**
 1. HR Recruiter chooses to redo the last action.
 2. **System** redoes the last action.  
@@ -507,7 +508,7 @@ Use case ends.
     
 Use case ends.
 
-## Use Case: UC12 - Clear All Candidates
+#### Use Case: UC12 - Clear All Candidates
 **MSS**
 1. HR Recruiter chooses to clear all candidates.
 2. **System** clears all candidates.  
