@@ -308,8 +308,6 @@ A highly efficient, CLI-driven contact management system that enables Apple’s 
 
 ### User stories
 
-### User stories
-
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​   | I want to …​                                                   | So that I can…​                                                                       |
@@ -814,6 +812,19 @@ Team size: 4
       Particularly impressed with his system design skills.
       2. Strong communication and intrapersonal skills. Involved with alot 
       of social work and clubs at university.
+      ```
+      
+7. **Enhanced Undo Redo Messages**: currently executing the undo and redo command will only show that undo or redo is successful. To help the user better know what has been undone or redone, we plan to enhance the undo and redo command by:
+    * Adding messages to show what action was undone or redone.
+    * Example usage:
+      ```
+      > undo
+      Added Candidate: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; Job Position: UI/UX Designer; Team: Design; Tags: [figma][design][experienced]
+      Undo successful!
+      
+      > redo
+      Deleted Candidate: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18; Job Position: UI/UX Designer; Team: Design; Tags: [figma][design][experienced]
+      Redo successful!
       ```
       
 
