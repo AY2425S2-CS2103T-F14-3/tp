@@ -98,8 +98,8 @@ class JsonAdaptedPerson {
         final Team modelTeam = validateAndCreateTeam();
 
         // Optional fields with default empty values
-        final StartTime modelStartTime = new StartTime(startTime != null ? startTime : "");
-        final Duration modelDuration = new Duration(duration != null ? duration : "");
+        final StartTime modelStartTime = validateAndCreateStartTime();
+        final Duration modelDuration = validateAndCreateDuration();
         final Notes modelNotes = new Notes(notes != null ? notes : "");
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
@@ -196,5 +196,25 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Team.MESSAGE_CONSTRAINTS);
         }
         return new Team(team);
+    }
+
+    private StartTime validateAndCreateStartTime() throws IllegalValueException {
+        if (startTime == null) {
+            return new StartTime("");
+        }
+        if (!StartTime.isValidStartTime(startTime)) {
+            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        return new StartTime(startTime);
+    }
+
+    private Duration validateAndCreateDuration() throws IllegalValueException {
+        if (duration == null) {
+            return new Duration("");
+        }
+        if (!Duration.isValidDuration(duration)) {
+            throw new IllegalValueException(Duration.MESSAGE_CONSTRAINTS);
+        }
+        return new Duration(duration);
     }
 }

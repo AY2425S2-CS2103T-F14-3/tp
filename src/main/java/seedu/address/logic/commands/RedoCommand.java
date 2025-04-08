@@ -11,10 +11,9 @@ import seedu.address.model.ModelManager;
  * Redoes the most recent command that was undone.
  */
 public class RedoCommand extends Command {
+
     public static final String COMMAND_WORD = "redo";
-
     public static final String MESSAGE_SUCCESS = "Redo successful!";
-
     public static final String MESSAGE_REDO_NOT_AVAILABLE = "No command to redo!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Redoes the last command that was undone.\n"
