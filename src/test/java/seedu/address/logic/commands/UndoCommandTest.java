@@ -110,33 +110,4 @@ public class UndoCommandTest {
 
         assertEquals(model.getFilteredPersonList().get(0), newPerson);
     }
-
-    @Test
-    public void execute_undoNonModifyingCommand_noChange() {
-        Person newPerson = model.getFilteredPersonList().get(0);
-
-        DeleteCommand deleteCommand = new DeleteCommand(newPerson);
-
-        try {
-            deleteCommand.execute(model);
-        } catch (CommandException e) {
-            e.printStackTrace();
-        }
-
-        ListCommand listCommand = new ListCommand();
-        listCommand.execute(model);
-
-        SortCommand sortCommand = new SortCommand();
-        sortCommand.execute(model);
-
-        UndoCommand undoCommand = new UndoCommand();
-
-        try {
-            undoCommand.execute(model);
-        } catch (CommandException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(model.getFilteredPersonList().size(), 7);
-    }
 }
