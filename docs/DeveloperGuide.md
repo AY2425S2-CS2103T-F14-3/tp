@@ -32,7 +32,7 @@ title: Developer Guide
 
 * Code and idea for Undo and Redo were 
     inspired by the original AB3 Developer Guide.
-
+* The `LocalDateTime` library was used for handling date and time functionalities.
 
 --------------------------------------------------------------------------------------------------------------------
 
